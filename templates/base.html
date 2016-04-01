@@ -1,0 +1,145 @@
+<!-- http://codepen.io/hellt/pen/ONjwYY -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>PLAZA Project</title>
+        <meta name="description" content="NOKIA Launchpad for scripts">
+        <meta name="author" content="Roman Dodin">
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/style.css" rel="stylesheet"> <!-- custom CSS -->
+        <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- NAV BAR -->
+        <div class="navbar navbar-nokia navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">PLAZA</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+
+                        <li>
+                            <a href="#contact">Contact</a>
+                        </li>
+                        <li>
+                           <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch">
+                               Search <span id="searchGlyph" class="glyphicon glyphicon-search"></span>
+                           </a>
+                       </li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+        <!-- NAV BAR -->
+
+
+        <!-- Search Modal (http://www.w3schools.com/bootstrap/bootstrap_modal.asp) -->
+        <div id="modalSearch" class="modal fade" role="dialog">
+           <div class="modal-dialog modal-lg">
+
+               <!-- Modal content-->
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                       <h4 class="modal-title">Search PLAZA (under development)</h4>
+                   </div>
+                   <div class="modal-body">
+                       <!-- Add the modal body here -->
+                   </div>
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                   </div>
+               </div>
+           </div>
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                  <div class="nav-side-menu">
+                    <div class="brand">MENU</div>
+                    <i class="fa fa-bars fa-3x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+                    <!-- START OF SIDE MENU AREA-->
+                    <div class="menu-list">
+                      <ul id="menu-content" class="menu-content collapse out">
+                          <!-- PLACEHOLDER FOR ELEMENT W/O CHILDREN
+                          <li>
+                              <a href="#">
+                                  <i class="fa fa-angle-right fa-fw"></i>Element wo children
+                              </a>
+                          </li>
+                          -->
+
+                          <li data-toggle="collapse" data-target="#5620sam" class="collapsed">
+                              <a href="#">
+                                  <i class="fa fa-angle-double-right fa-fw chevron-rotate"></i>5620 SAM
+                              </a>
+                          </li>
+                              <ul class="sub-menu collapse out" id="5620sam">
+                                  <li>
+                                      <i class="fa fa-angle-right fa-fw"></i>
+                                      <a href="/5620sam/sam_xml_api_tester">
+                                          SAM-O XML API Test Engine
+                                      </a>
+                                  </li>
+                              </ul>
+
+                          <li data-toggle="collapse" data-target="#vmware" class="collapsed">
+                              <a href="#">
+                                  <i class="fa fa-angle-double-right fa-fw chevron-rotate"></i>VMWare
+                              </a>
+                          </li>
+                              <ul class="sub-menu collapse out" id="vmware">
+                                  <li>
+                                      <i class="fa fa-angle-right fa-fw"></i>
+                                      <a href="/vmware/get_vmrc_links">
+                                          VMRC Link Composer
+                                      </a>
+                                  </li>
+
+                                  <li data-toggle="collapse" data-target="#products2" class="collapsed">
+                                      <i class="fa fa-angle-double-right fa-fw chevron-rotate"></i>
+                                      <a href="#">Placeholder-sublevel1
+                                      </a>
+                                  </li>
+                                      <ul class="sub-sub-menu collapse out" id="products2">
+                                          <li class="sub-level2">
+                                              <i class="fa fa-angle-right fa-fw"></i>
+                                              <a href="#">
+                                                  Placeholder-sublevel2
+                                              </a>
+                                          </li>
+                                      </ul>
+                              </ul>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- END OF SIDE MENU AREA -->
+                <!-- START OF CONTENT AREA -->
+                <div class="col-md-9">
+                    {% block content %}{% endblock %}
+                </div>
+                <!-- END OF CONTENT AREA -->
+            </div>
+        </div>
+
+
+        <script src="/static/js/jquery-2.2.0.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/scripts.js"></script>            <!-- custom JS -->
+        <script src="/static/js/validator.min.js"></script>      <!-- https://github.com/1000hz/bootstrap-validator -->
+        <script src="/static/js/loadingoverlay.min.js"></script> <!-- http://gasparesganga.com/labs/jquery-loading-overlay/-->
+        {% block added_js %}{% endblock %}                       <!-- block for JS added on pages on demand -->
+    </body>
+</html>

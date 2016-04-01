@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="text-primary">
+    {% block title %}{% endblock %}
+</h2>
+
+<p class="lead" >
+    {% block main_purpose %}{% endblock %}
+</p>
+
+<h3>
+    Description
+</h3>
+    <p>{% block descr %}{% endblock %}</p>
+
+<h3>
+    Usage
+</h3>
+    <p>{% block usage %}{% endblock %}</p>
+
+
+<h3>
+    Limitations
+</h3>
+    <p>{% block limitations %}{% endblock %}</p>
+
+<!-- Author and info block -->
+<small>
+<dl class="dl-horizontal">
+  <dt>Author</dt>
+  <dd>{% block author %}{% endblock %}</dd>
+
+  <dt>Version</dt>
+  <dd>{% block version %}{% endblock %}</dd>
+
+  <dt>Tags</dt>
+  <dd>{% block tags %}{% endblock %}</dd>
+</dl>
+</small>
+
+    {% block script_content %}<!-- Custom HTML for scrip -->{% endblock %}
+
+{% endblock %}
+
+{% block added_js %}<!-- Custom JavaScript for a script page-->{% endblock %}

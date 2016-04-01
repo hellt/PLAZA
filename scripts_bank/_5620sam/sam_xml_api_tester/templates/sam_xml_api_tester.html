@@ -1,0 +1,60 @@
+{% extends 'content_template.html' %}
+{% block title %}
+    New script
+{% endblock %}
+
+{% block main_purpose %}
+This is just demo for the blog.
+{% endblock %}
+
+{% block descr %}
+Description TBD...
+{% endblock %}
+
+{% block usage %}
+It does nothing, <mark>for now</mark>
+{% endblock %}
+
+{% block limitations %}
+My code does not have limitation!
+{% endblock %}
+
+{% block author %}
+Roman Dodin
+{% endblock %}
+
+{% block version %}
+0.1
+{% endblock %}
+
+{% block tags %}
+noshut.ru
+{% endblock %}
+
+{% block script_content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Inputs</h3>
+                </div>
+                <div class="panel-body">
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Output</h3>
+                </div>
+                <div class="panel-body" id="output_div">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block added_js %}
+<!-- nothing here for the moment -->
+{% endblock %}

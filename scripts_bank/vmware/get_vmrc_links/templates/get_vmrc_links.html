@@ -1,0 +1,125 @@
+{% extends 'content_template.html' %}
+{% block title %}
+    VMRC Links Composer
+{% endblock %}
+
+
+{% block main_purpose %}
+This script composes clickable links for VMWare Remote Console (VMRC) standalone client along with basic info
+about VMs on a ESXi host or vCenter.
+{% endblock %}
+
+
+{% block descr %}
+It became quite a pain to get Web-based console working on ESXi hosts or vCenter servers (<=v.5.5) with
+<a href="http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&amp;cmd=displayKC&amp;externalId=2114800">deprecation of NPAPI</a>
+plugins in modern browsers. An easy method to get a remote console access would be to use a standalone
+<a href="http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&amp;cmd=displayKC&amp;externalId=2091284">Virtual Machine Remote Console client (VMRC)</a>
+which is available for free for major OSes.
+<p>For standalone VMRC client to work a special link has to be composed - <br/>i.e. <code>vmrc://root@172.17.9.52:443/?moid=vm-13</code></p>
+This script generates such links and is based on an appropriate <a href="http://noshut.ru/2016/01/getting-vmrc-links-with-python/">console version</a>.
+
+{% endblock %}
+
+
+{% block usage %}
+Script works both with independent ESXi hosts and managed by vCenter. Select desired entity from the
+<code>Known hosts</code> select element or specify ESXi/vCenter IP address along with
+credentials of the user with root privileges and you are good to go.
+{% endblock %}
+
+
+{% block limitations %}
+In rare cases the script couldn't compose the whole link, in that case use the <code>moID</code> value specified in the
+output section to compose VMRC link manually.
+{% endblock %}
+
+
+{% block author %}
+Roman Dodin
+{% endblock %}
+
+
+{% block version %}
+0.1
+{% endblock %}
+
+
+{% block tags %}
+VMWare, VMRC
+{% endblock %}
+
+
+{% block script_content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Inputs</h3>
+                </div>
+                <div class="panel-body">
+
+
+                    <!-- FORM -->
+                    <form data-toggle="validator" role="form" method="post"> <!-- validation form http://1000hz.github.io/bootstrap-validator/ -->
+
+                        <div class="form-group col-md-12">
+                            <label class="control-label" for="known_hosts_select">
+                                Known hosts
+                            </label>
+                            <select class="form-control" id="known_hosts_select">
+                              <option>-- List of known hosts --</option>
+                              <option ip="172.17.9.52" login="root" pass="sk35alu!65DC">vCenter (172.17.9.52) -- managing hosts 172.17.9.50, 172.17.9.51</option>
+                              <option ip="172.17.11.74" login="root" pass="alcatel">ESXi (172.17.11.74) -- main IPD ESXi host</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label class="control-label requiredField" for="vmware_ip_addr">
+                                ESXi/vCenter IP address
+                            </label>
+                            <input class="form-control" type="text"
+                                   pattern="^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+                                   id="vmware_ip_addr" name="vmware_ip_addr" placeholder="i.e. 172.17.9.52"
+                                   data-error="How did you pass NRS I? Its not a valid IP address" />
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label requiredField" for="vmware_login">Login
+                            </label>
+                            <input class="form-control" id="vmware_login" name="vmware_login" placeholder="root" type="text" required/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label requiredField" for="vmware_pass">Password
+                            </label>
+                            <input class="form-control"  id="vmware_pass" name="vmware_pass"
+                                   placeholder="password" type="password" required/>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div> <!-- RD: type="submit" changed to button, since JQuery is in use -->
+                                <button class="btn btn-primary" id="submit_form" name="submit" type="button">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- OUTPUT SECTION -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Output</h3>
+                </div>
+                <div class="panel-body" id="output_div">
+                </div>
+            </div>
+            <!-- END OF OUTPUT SECTION -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block added_js %}
+<script src="{{ url_for('get_vmrc_links.static', filename='get_vmrc_links.js') }}"></script>
+{% endblock %}
