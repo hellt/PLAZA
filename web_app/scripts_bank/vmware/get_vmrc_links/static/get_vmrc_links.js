@@ -12,17 +12,8 @@ $(function() {
                         image       : "",
                         fontawesome : "fa fa-cog fa-spin"
                         })
-        // compose URL (newPathname) which will prepend jquery function URL
-        // in the case of base URL like this: /vmware/get_vmrc_links.html
-        // we need to get /vmware portion, since our flask blueprint is registered at this point
-        var base_url = window.location.pathname.split('/')
-        var newPathname = "/";
-        for (i = 1; i < base_url.length-1; i++) {
-          newPathname += base_url[i];
-        }
-//        alert(newPathname)
         $.ajax({
-            url: newPathname + '/get_vmrc_links', // url: /vmware/get_vmrc_links
+            url: window.localtion.pathname, // url: /vmware/get_vmrc_links
             data: $('form').serialize(),
             type: 'POST',
             success: function(response) {
